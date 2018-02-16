@@ -10,7 +10,14 @@ compinit
 #
 # LANG
 #
-export LANG=ja_JP.UTF-8
+export LANG=C
+
+case "${OSTYPE}" in
+linux*|darwin*)
+    LANG=ja_JP.UTF-8
+    ;;
+esac
+
 case ${UID} in
 0)
     LANG=C
