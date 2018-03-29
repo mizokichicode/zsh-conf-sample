@@ -29,18 +29,9 @@ esac
 #
 # set prompt
 #
-case ${UID} in
-0)
-    PROMPT=$'[%m]%/#> '
-    PROMPT2=$'[%m]%_#> '
-    SPROMPT=$'[%m]%r is correct ? [n,y,a,e]: '
-    ;;
-*)
-    PROMPT=$'[%m]%/%%> '
-    PROMPT2=$'[%m]%_%%> '
-    SPROMPT=$'[%m]%r is correct ? [n,y,a,e]: '
-    ;;
-esac
+PROMPT=$'[%m]%/%#> '
+PROMPT2=$'[%m]%_%#> '
+SPROMPT=$'[%m}%r is correct ? [n,y,a,e]: '
 
 ## Option shell configuration
 #
