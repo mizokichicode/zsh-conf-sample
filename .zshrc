@@ -49,7 +49,7 @@ setopt noautoremoveslash    # no remove postfix slash of command line
 setopt nolistbeep           # no beep sound when complete list displayed
 setopt prompt_subst
 
-## Defalt vcs_info configuration
+## Default vcs_info configuration
 #
 zstyle ':vcs_info:*' max-exports 3
 zstyle ':vcs_info:*' enable git
