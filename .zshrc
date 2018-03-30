@@ -39,6 +39,16 @@ PROMPT2=$'[%m]%_%#> '
 SPROMPT=$'[%m}%r is correct ? [n,y,a,e]: '
 RPROMPT=""
 
+## Option shell configuration
+#
+setopt auto_cd              # auto change directory
+setopt auto_pushd           # auto directory pushd that you can get dirs list by cd -[tab]
+setopt correct              # command correct edition before each completion attempt
+setopt list_packed          # compacked complete list display
+setopt noautoremoveslash    # no remove postfix slash of command line
+setopt nolistbeep           # no beep sound when complete list displayed
+setopt prompt_subst
+
 ## Defalt vcs_info configuration
 #
 zstyle ':vcs_info:*' max-exports 3
@@ -87,12 +97,7 @@ if is-at-least 4.3.11; then
             return 0
         fi
 
-        #if [[ "${hook_com[branch]}" != "master" ]]; then
-        #    return 0
-        #fi
-
         local ahead
-        #ahead=$(command git rev-list origin/master..master 2> /dev/null | wc -l | tr -d ' ')
         ahead=$(command git rev-list origin/${hook_com[branch]}..${hook_com[branch]} 2> /dev/null | wc -l | tr -d ' ')
 
         if [[ "$ahead" -gt 0 ]]; then
@@ -166,14 +171,6 @@ function _update_vcs_info_msg() {
 
 add-zsh-hook precmd _update_vcs_info_msg
 
-## Option shell configuration
-#
-setopt auto_cd              # auto change directory
-setopt auto_pushd           # auto directory pushd that you can get dirs list by cd -[tab]
-setopt correct              # command correct edition before each completion attempt
-setopt list_packed          # compacked complete list display
-setopt noautoremoveslash    # no remove postfix slash of command line
-setopt nolistbeep           # no beep sound when complete list displayed
 
 ## Predict configuration
 #
