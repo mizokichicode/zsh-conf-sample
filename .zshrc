@@ -54,8 +54,8 @@ if is-at-least 4.3.10; then
     zstyle ':vcs_info:git:*' formats '[%b]' '%c%u %m'
     zstyle ':vcs_info:git:*' actionformats '[%b]' '%c%u %m' '<!%a>'
     zstyle ':vcs_info:git:*' check-for-changes true
-    zstyle ':vcs_info:git:*' stagedstr "+"
-    zstyle ':vcs_info:git:*' unstagedstr "-"
+    zstyle ':vcs_info:git:*' stagedstr "%F{green}+%f%F{yellow}"
+    zstyle ':vcs_info:git:*' unstagedstr "%F{red}-%f%F{yellow}"
 fi
 
 ## zsh ver 4.3.11
@@ -87,12 +87,13 @@ if is-at-least 4.3.11; then
             return 0
         fi
 
-        if [[ "${hook_com[branch]}" != "master" ]]; then
-            return 0
-        fi
+        #if [[ "${hook_com[branch]}" != "master" ]]; then
+        #    return 0
+        #fi
 
         local ahead
-        ahead=$(command git rev-list origin/master..master 2> /dev/null | wc -l | tr -d ' ')
+        #ahead=$(command git rev-list origin/master..master 2> /dev/null | wc -l | tr -d ' ')
+        ahead=$(command git rev-list origin/${hook_com[branch]}..${hook_com[branch]} 2> /dev/null | wc -l | tr -d ' ')
 
         if [[ "$ahead" -gt 0 ]]; then
             hook_com[misc]+="(p${ahead})"
